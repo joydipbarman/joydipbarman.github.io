@@ -19,6 +19,7 @@ header {
   background: var(--primary);
   color: var(--white);
   padding: 2rem 0 1rem;
+  text-align: center;
 }
 
 header h1 {
@@ -99,19 +100,74 @@ footer {
   margin-top: 2rem;
 }
 
+/* --- Responsive styles for mobile (phone) --- */
 @media (max-width: 600px) {
-  .container {
-    padding: 1rem;
-  }
   header, footer {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
-  h1 {
+  header h1 {
     font-size: 1.6rem;
+  }
+  header p {
+    font-size: 1rem;
+  }
+  .container {
+    padding: 1rem;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 1rem 0;
+    width: 100%;
   }
   .profile-photo img {
     width: 100px;
     height: 100px;
+  }
+  h2 {
+    font-size: 1.2rem;
+    padding-left: 0.5rem;
+  }
+  ul {
+    margin-left: 1rem;
+  }
+  section {
+    margin-bottom: 1.5rem;
+  }
+  footer {
+    border-radius: 0;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Responsive styles for desktop --- */
+@media (min-width: 601px) {
+  header, footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  header h1 {
+    font-size: 2.5rem;
+  }
+  .container {
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(35,57,93,0.1);
+    margin: 2rem auto;
+    padding: 2rem;
+    width: 95%;
+    max-width: 800px;
+  }
+  .profile-photo img {
+    width: 140px;
+    height: 140px;
+  }
+  h2 {
+    font-size: 1.5rem;
+    padding-left: 0.75rem;
+  }
+  footer {
+    border-radius: 0 0 10px 10px;
+    margin-top: 2rem;
+    font-size: 1rem;
   }
 }
