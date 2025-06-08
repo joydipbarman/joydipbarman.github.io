@@ -1,84 +1,78 @@
-# Joydip Barman – Portfolio
+# Joydip Barman's Portfolio
 
-**Political Science | Research | NBU/SC'25 | Reading | Explorer | NCC Alumnus**  
-Siliguri, West Bengal, India
+A modern, responsive personal portfolio website built with HTML, CSS, and JavaScript.  
+Showcasing my journey as a Political Science student, researcher, and explorer from Siliguri, India.
 
----
+## 🌟 Features
 
-## Contact
+- 🎨 Clean and modern design
+- 📱 Fully responsive layout for all devices
+- 🌓 Dark mode support
+- ⚡ Smooth animations and transitions
+- 📝 Contact form integration (Formspree)
+- 🔍 SEO friendly
+- 🚀 Fast loading
 
-- **Email:** [joydipofficialwork03@gmail.com](mailto:joydipofficialwork03@gmail.com)
-- **LinkedIn:** [Joydip Barman](https://www.linkedin.com/in/joydipbarman)
+## 📂 Project Structure
 
----
+```
+joydipbarman.github.io/
+├── index.html          # Main portfolio page
+├── style.css           # Stylesheet
+├── script.js           # JavaScript functionality
+└── assets/             # Static assets (resume, images, etc.)
+    └── resume.pdf      # My resume
+```
 
-## Summary
+## 🛠️ Setup Instructions
 
-Hello there! My name is Joydip Barman and I am a driven and enthusiastic student from Siliguri, India. Currently pursuing my Bachelor of Arts (Honours) in Political Science at Siliguri College, I am passionate about continuously learning new skills and expanding my knowledge.
+1. **Clone the repository**
+    ```bash
+    git clone https://github.com/joydipbarman/joydipbarman.github.io.git
+    cd joydipbarman.github.io
+    ```
 
----
+2. **Add your resume**
+    - Place your resume PDF in the `assets` folder as `resume.pdf`.
 
-## Skills
+3. **Customize your content**
+    - Edit `index.html` to update your personal information, education, experience, and skills.
+    - Adjust styles in `style.css` and animations in `script.js` as needed.
 
-- **Data Collection**
-- **Political Communication**
-- **Confidence-Building**
+4. **Contact Form Integration**
+    - Sign up for a free Formspree account at [formspree.io](https://formspree.io).
+    - Create a new form, copy the form endpoint, and replace the `action` attribute in the contact form in `index.html`:
+      ```html
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+      ```
 
----
+5. **Test locally**
+    - Open `index.html` in your browser.
+    - Test all links and forms.
+    - Check responsiveness on different devices and screen sizes.
 
-## Languages
+6. **Publish**
+    - Push your changes to GitHub.  
+    - Your portfolio will be live at `https://joydipbarman.github.io`.
 
-- **Bengali:** Native or Bilingual
-- **Assamese:** Limited Working
-- **Hindi:** Full Professional
-- **English:** Professional Working
+## 👨‍🎓 About Me
 
----
+- **Name:** Joydip Barman
+- **Degree:** B.A. (Honours) in Political Science, Siliguri College (NBU/SC'25)
+- **Location:** Siliguri, West Bengal, India
+- **Interests:** Political Science, Research, Reading, Exploration, NCC
+- **Languages:** Bengali (Native), Hindi, English, Assamese
 
-## Certifications
+## 📫 Contact
 
-- **Basics of Research Methodology**
+- **Email:** joydipofficialwork03@gmail.com
+- **LinkedIn:** [linkedin.com/in/joydipbarman](https://www.linkedin.com/in/joydipbarman)
 
----
+## 🙏 Credits & Inspiration
 
-## Experience
+Based on a template by [Vishang Lad](https://github.com/vishangl).  
+Feel free to fork and customize for your own use!
 
-**NATIONAL CADET CORPS - India**  
-*Cadet*  
-January 2017 – March 2020 (3 years 3 months)  
-West Bengal, India
+## 📝 License
 
-- Completed NCC basic training under 138/13 BENGAL BN NCC
-- Gained experience in teamwork, confidence-building, and leadership.
-- Earned the NCC ‘A’ Certificate.
-
----
-
-## Education
-
-**Siliguri College - India**  
-*Bachelor of Arts (Honours), Political Science*  
-2022 – 2025
-
-**Sahebganj High School - CoochBehar**  
-*Higher Secondary, Humanities, Arts, and Social Science*  
-2020 – 2022
-
-**Sabuj Palli High School - H.S.**  
-*Madhyamik Pariksha (Secondary Examination)*  
-2014 – 2020
-
----
-
-## Interests
-
-- Research
-- Reading
-- Exploring new fields
-- Volunteering
-
----
-
-## Portfolio Usage
-
-This repository contains all the necessary files for Joydip Barman's personal portfolio. For any inquiries or collaboration, please reach out via [email](mailto:joydipofficialwork03@gmail.com) or [LinkedIn](https://www.linkedin.com/in/joydipbarman).
+This project is open source and available under the [MIT License](LICENSE).
