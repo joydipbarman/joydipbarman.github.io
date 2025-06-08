@@ -1,143 +1,284 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joydip Barman | Political Science Student</title>
-    <meta name="description" content="Joydip Barman - Political Science student, researcher, and explorer from Siliguri, India. Portfolio, resume, and contact information.">
+    <title>Joydip Barman's Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Typed.js for typing animation -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">Joydip Barman</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="assets/resume.pdf" target="_blank" rel="noopener"><i class="fa fa-file"></i> Resume</a></li>
-            </ul>
-            <button id="darkModeToggle" aria-label="Toggle dark mode"><i class="fa fa-moon"></i></button>
-        </nav>
-    </header>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand">JB</div>
+        <div class="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#interests">Interests</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="home" class="hero">
+        <div id="particles-js"></div>
         <div class="hero-content">
-            <h1>Hello, I'm Joydip Barman</h1>
-            <p>Political Science | Research | Explorer | NCC Alumnus</p>
-            <a href="assets/resume.pdf" class="btn" target="_blank" rel="noopener"><i class="fa fa-download"></i> Download Resume</a>
+            <h1>Hi, I'm <span class="highlight">Joydip Barman</span></h1>
+            <h2>
+                <span id="typed-text"></span>
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    new Typed('#typed-text', {
+                        strings: [
+                            "Political Science Student",
+                            "Research Enthusiast",
+                            "NBU/SC'25",
+                            "Explorer | Reader | NCC"
+                        ],
+                        typeSpeed: 50,
+                        backSpeed: 25,
+                        loop: true
+                    });
+                });
+                </script>
+            </h2>
+            <div class="hero-buttons">
+                <a href="mailto:joydipofficialwork03@gmail.com" class="btn primary-btn">
+                    <i class="fas fa-envelope"></i> Email Me
+                </a>
+                <a href="#about" class="btn secondary-btn">
+                    <i class="fas fa-user"></i> About Me
+                </a>
+            </div>
+            <div class="social-icons">
+                <a href="https://linkedin.com/in/joydipbarman" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:joydipofficialwork03@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="arrow">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </section>
+
     <!-- About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            Hello there! My name is Joydip Barman and I am a driven and enthusiastic student from Siliguri, India. 
-            Currently pursuing my Bachelor of Arts (Honours) in Political Science at Siliguri College (NBU/SC'25), 
-            I am passionate about continuously learning new skills and expanding my knowledge. 
-            An avid reader and explorer, I enjoy engaging with new ideas and perspectives.
-        </p>
-    </section>
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2>Top Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <i class="fa fa-database"></i>
-                <h3>Data Collection</h3>
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Hello there! My name is Joydip Barman and I am a driven and enthusiastic student from Siliguri, India. Currently pursuing my Bachelor of Arts (Honours) in Political Science at Siliguri College, I am passionate about continuously learning new skills and expanding my knowledge.
+                </p>
+                <div class="about-details">
+                    <div class="detail-item">
+                        <i class="fas fa-user"></i>
+                        <span>Name:</span>
+                        <p>Joydip Barman</p>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email:</span>
+                        <p>joydipofficialwork03@gmail.com</p>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Location:</span>
+                        <p>Siliguri, West Bengal, India</p>
+                    </div>
+                </div>
             </div>
-            <div class="skill-card">
-                <i class="fa fa-bullhorn"></i>
-                <h3>Political Communication</h3>
-            </div>
-            <div class="skill-card">
-                <i class="fa fa-users"></i>
-                <h3>Confidence-Building</h3>
-            </div>
-        </div>
-    </section>
-    <!-- Experience Section -->
-    <section id="experience">
-        <h2>Experience</h2>
-        <div class="experience-entry">
-            <div>
-                <h3>NATIONAL CADET CORPS - India</h3>
-                <p><strong>Cadet</strong> (Jan 2017 - Mar 2020)</p>
-                <ul>
-                    <li>Completed NCC basic training under 138/13 BENGAL BN NCC</li>
-                    <li>Gained experience in teamwork, confidence-building, and leadership</li>
-                    <li>Earned the NCC ‘A’ Certificate</li>
-                </ul>
+            <div class="about-image">
+                <!-- You can update the image source as per your photo -->
+                <img src="assets/joydip_photo.jpg" alt="Joydip Barman">
+                <div class="image-overlay"></div>
             </div>
         </div>
     </section>
+
     <!-- Education Section -->
-    <section id="education">
-        <h2>Education</h2>
-        <div class="education-entry">
-            <h3>Siliguri College, India</h3>
-            <p>Bachelor of Arts (Honours), Political Science (2022 - 2025)</p>
-        </div>
-        <div class="education-entry">
-            <h3>Sahebganj High School, CoochBehar</h3>
-            <p>Higher Secondary, Humanities, Arts, and Social Science (2020 - 2022)</p>
-        </div>
-        <div class="education-entry">
-            <h3>Sabuj Palli High School - H.S.</h3>
-            <p>Madhyamik Pariksha (Secondary Examination) (2014 - 2020)</p>
+    <section id="education" class="education">
+        <h2 class="section-title">Education Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2022 - 2025</div>
+                    <div class="timeline-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Bachelor of Arts (Honours), Political Science</h3>
+                    <h4>Siliguri College - India</h4>
+                    <p class="field">Political Science</p>
+                    <div class="timeline-details">
+                        <div class="detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Siliguri, India</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2020 - 2022</div>
+                    <div class="timeline-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Higher Secondary</h3>
+                    <h4>Sahebganj High School - CoochBehar</h4>
+                    <p class="field">Humanities, Arts, and Social Science</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2014 - 2020</div>
+                    <div class="timeline-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h3>Madhyamik Pariksha (Secondary Examination)</h3>
+                    <h4>Sabuj Palli High School - H.S.</h4>
+                </div>
+            </div>
         </div>
     </section>
-    <!-- Languages Section -->
-    <section id="languages">
-        <h2>Languages</h2>
-        <ul>
-            <li><strong>Bengali:</strong> Native or Bilingual</li>
-            <li><strong>Hindi:</strong> Full Professional</li>
-            <li><strong>English:</strong> Professional Working</li>
-            <li><strong>Assamese:</strong> Limited Working</li>
-        </ul>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <h2 class="section-title">Top Skills</h2>
+        <div class="skills-container">
+            <div class="skills-category">
+                <h3><i class="fas fa-database"></i> Data Collection</h3>
+            </div>
+            <div class="skills-category">
+                <h3><i class="fas fa-bullhorn"></i> Political Communication</h3>
+            </div>
+            <div class="skills-category">
+                <h3><i class="fas fa-user-check"></i> Confidence-Building</h3>
+            </div>
+        </div>
     </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-grid">
+            <div class="experience-item">
+                <div class="experience-header">
+                    <i class="fas fa-users"></i>
+                    <h3>NATIONAL CADET CORPS - India</h3>
+                </div>
+                <div class="experience-details">
+                    <span class="exp-role">Cadet</span>
+                    <span class="exp-duration">January 2017 - March 2020 (3 years 3 months)</span>
+                    <span class="exp-location">West Bengal, India</span>
+                    <ul>
+                        <li>Completed NCC basic training under 138/13 BENGAL BN NCC</li>
+                        <li>Gained experience in teamwork, confidence-building, and leadership.</li>
+                        <li>Earned the NCC ‘A’ Certificate.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Certifications Section -->
-    <section id="certifications">
-        <h2>Certifications</h2>
-        <ul>
-            <li>Basics of Research Methodology</li>
-        </ul>
-    </section>
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact</h2>
-        <form action="https://formspree.io/f/your-form-id" method="POST">
-            <div class="form-group">
-                <input type="text" name="name" placeholder="Your Name" required />
+    <section id="certifications" class="certifications">
+        <h2 class="section-title">Certifications</h2>
+        <div class="certifications-grid">
+            <div class="certification-item">
+                <div class="certificate-info">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Basics of Research Methodology</h3>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="email" name="email" placeholder="Your Email" required />
-            </div>
-            <div class="form-group">
-                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-            </div>
-            <button type="submit" class="btn"><i class="fa fa-paper-plane"></i> Send</button>
-        </form>
-        <div class="contact-info">
-            <p><i class="fa fa-envelope"></i> joydipofficialwork03@gmail.com</p>
-            <p><i class="fa fa-map-marker-alt"></i> Siliguri, West Bengal, India</p>
-            <p>
-                <a href="https://www.linkedin.com/in/joydipbarman" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            </p>
+            <!-- Add more certificates if needed -->
         </div>
     </section>
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Joydip Barman. Powered by HTML, CSS, JavaScript.</p>
-    </footer>
-    <script src="script.js"></script>
+
+    <!-- Interests Section -->
+    <section id="interests" class="interests">
+        <h2 class="section-title">Interests & Hobbies</h2>
+        <div class="interests-grid">
+            <div class="interest-item">
+                <i class="fas fa-book"></i>
+                <h3>Reading</h3>
+            </div>
+            <div class="interest-item">
+                <i class="fas fa-globe"></i>
+                <h3>Exploring</h3>
+            </div>
+            <div class="interest-item">
+                <i class="fas fa-users"></i>
+                <h3>NCC</h3>
+            </div>
+            <!-- Add more interests if needed -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-items">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>joydipofficialwork03@gmail.com</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Siliguri, West Bengal, India</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/joydipbarman" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:joydipofficialwork03@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <form class="contact-form" action="mailto:joydipofficialwork03@gmail.com" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn primary-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
 </body>
-</html>
+                            </html>
