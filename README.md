@@ -68,11 +68,6 @@ joydipbarman.github.io/
 - **Email:** joydipofficialwork03@gmail.com
 - **LinkedIn:** [linkedin.com/in/joydipbarman](https://www.linkedin.com/in/joydipbarman)
 
-## 🙏 Credits & Inspiration
-
-Based on a template by [Vishang Lad](https://github.com/vishangl).  
-Feel free to fork and customize for your own use!
-
 ## 📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
