@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joydip Barman — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --night:#0b0d11;
+  --night2:#111318;
+  --night3:#181c23;
+  --surface:#1e2330;
+  --surface2:#252b3b;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.13);
+  --text:#e8eaf0;
+  --text2:#9aa0b4;
+  --text3:#5a6080;
+  --gold:#c9a84c;
+  --gold2:#e8c96a;
+  --teal:#2dd4bf;
+  --teal2:#5eead4;
+  --teal-dim:rgba(45,212,191,0.1);
+  --gold-dim:rgba(201,168,76,0.1);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Outfit',system-ui,sans-serif;
+  --r:10px;
+}
+
+html,body{width:100%;height:100%;overflow:hidden}
+body{font-family:var(--sans);background:var(--night);color:var(--text);font-size:15px;line-height:1.6}
+
+/* ── SLIDE ENGINE ── */
+#slides{width:100%;height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.slide{
+  width:100%;height:100vh;
+  scroll-snap-align:start;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+}
+
+/* ── SIDE NAV ── */
+#sidenav{
+  position:fixed;right:28px;top:50%;transform:translateY(-50%);
+  z-index:200;display:flex;flex-direction:column;gap:10px;
+}
+.sn-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--border2);border:none;cursor:pointer;
+  transition:all .3s;padding:0;
+}
+.sn-dot.active{background:var(--teal);transform:scale(1.4);}
+.sn-dot:hover{background:var(--text2);}
+
+/* ── TOP BAR ── */
+#topbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 2.5rem;height:52px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(11,13,17,0.7);backdrop-filter:blur(14px);
+  border-bottom:0.5px solid var(--border);
+}
+.topbar-logo{font-family:var(--serif);font-size:17px;color:var(--text);letter-spacing:-.2px}
+.topbar-logo span{color:var(--gold);}
+.topbar-nav{display:flex;gap:1.8rem;list-style:none}
+.topbar-nav a{font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color .2s;}
+.topbar-nav a:hover{color:var(--teal);}
+.topbar-cta{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--teal);border:1px solid var(--teal);border-radius:40px;padding:6px 18px;cursor:pointer;text-decoration:none;transition:all .2s;}
+.topbar-cta:hover{background:var(--teal);color:var(--night);}
+
+/* ── PROGRESS BAR ── */
+#progress{position:fixed;bottom:0;left:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--gold));transition:width .4s;z-index:200}
+
+/* ── HELPERS ── */
+.inner{max-width:1040px;margin:0 auto;padding:0 2.5rem;width:100%}
+.label{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.22s}.d3{transition-delay:.34s}.d4{transition-delay:.46s}.d5{transition-delay:.58s}.d6{transition-delay:.7s}
+
+/* geometric bg lines */
+.geo{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.geo-line{position:absolute;background:var(--border);transform-origin:center}
+
+/* ─────────────────────────────────────────
+   SLIDE 1 — HERO
+───────────────────────────────────────── */
+#s1{background:var(--night);justify-content:center;align-items:center;}
+#s1 .geo-line.l1{width:1px;height:60%;left:38%;top:0}
+#s1 .geo-line.l2{width:60%;height:1px;left:0;top:45%}
+#s1 .geo-line.l3{width:1px;height:40%;right:20%;bottom:0}
+#s1 .inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;z-index:1}
+.hero-left{}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);margin-bottom:1.2rem}
+.hero-name{font-family:var(--serif);font-size:clamp(42px,5.5vw,68px);line-height:1.02;letter-spacing:-.5px;color:var(--text);margin-bottom:.3rem}
+.hero-name span{color:var(--gold);font-style:italic}
+.hero-tagline{font-size:14px;color:var(--text2);margin-bottom:2rem;line-height:1.7;max-width:400px}
+.hero-dual{display:flex;flex-direction:column;gap:10px;margin-bottom:2.2rem}
+.dual-pill{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:8px;border:0.5px solid;font-size:13px;font-weight:500}
+.dual-pill.da{border-color:rgba(45,212,191,.3);background:rgba(45,212,191,.06);color:var(--teal2)}
+.dual-pill.lis{border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.06);color:var(--gold2)}
+.dual-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.da .dual-dot{background:var(--teal)}
+.lis .dual-dot{background:var(--gold)}
+.dual-sub{font-size:11px;opacity:.6;margin-left:auto}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-t{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:10px 22px;border-radius:40px;text-decoration:none;cursor:pointer;transition:all .2s}
+.btn-t.primary{background:var(--teal);color:var(--night);border:none}
+.btn-t.primary:hover{background:var(--teal2);transform:translateY(-1px)}
+.btn-t.ghost{background:transparent;color:var(--text);border:1px solid var(--border2)}
+.btn-t.ghost:hover{border-color:var(--text2);transform:translateY(-1px)}
+
+.hero-right{display:flex;flex-direction:column;gap:16px}
+.hero-card{background:var(--surface);border:0.5px solid var(--border2);border-radius:14px;padding:1.5rem}
+.hero-card-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.stat-c{background:var(--surface2);padding:14px 10px;text-align:center}
+.stat-n{font-family:var(--serif);font-size:26px;color:var(--text);line-height:1}
+.stat-l{font-size:10px;color:var(--text3);margin-top:3px;letter-spacing:.04em}
+.scroll-hint{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;padding:12px 16px}
+.scroll-arrow{display:flex;flex-direction:column;gap:3px}
+.sa{width:16px;height:1px;background:var(--text3);animation:slide-down 1.4s infinite}
+.sa:nth-child(2){animation-delay:.2s}
+.sa:nth-child(3){animation-delay:.4s}
+@keyframes slide-down{0%{opacity:0;transform:translateY(-4px)}50%{opacity:1}100%{opacity:0;transform:translateY(4px)}}
+
+/* ─────────────────────────────────────────
+   SLIDE 2 — ABOUT
+───────────────────────────────────────── */
+#s2{background:var(--night2);justify-content:center;align-items:center}
+#s2 .inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.about-avatar{
+  width:200px;height:200px;border-radius:50%;margin:0 auto 1.5rem;
+  background:linear-gradient(135deg,var(--surface2) 0%,var(--night3) 100%);
+  border:2px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:72px;color:var(--gold);
+  position:relative;overflow:hidden;
+}
+.about-avatar::after{content:'';position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 30px rgba(201,168,76,.08)}
+.about-initials-wrap{text-align:center}
+.about-name-sm{font-size:15px;font-weight:500;color:var(--text);margin-bottom:3px}
+.about-loc{font-size:12px;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:5px}
+.about-badges{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:.8rem}
+.badge{font-size:10px;font-weight:600;letter-spacing:.06em;padding:3px 10px;border-radius:40px}
+.badge.t{background:var(--teal-dim);color:var(--teal2);border:0.5px solid rgba(45,212,191,.2)}
+.badge.g{background:var(--gold-dim);color:var(--gold2);border:0.5px solid rgba(201,168,76,.2)}
+h2{font-family:var(--serif);font-size:clamp(28px,3vw,40px);line-height:1.1;letter-spacing:-.3px;color:var(--text);margin-bottom:1rem}
+.about-para{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:1rem}
+.about-quote{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--text);border-left:2px solid var(--gold);padding-left:1rem;margin:1.2rem 0;line-height:1.5}
+
+/* ─────────────────────────────────────────
+   SLIDE 3 — EDUCATION
+───────────────────────────────────────── */
+#s3{background:var(--night3);justify-content:center;align-items:center}
+#s3 .inner{position:relative;z-index:1}
+#s3 h2{margin-bottom:2.5rem}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.edu-card{
+  background:var(--surface);border:0.5px solid var(--border2);
+  border-radius:var(--r);padding:1.6rem;position:relative;overflow:hidden;
+  transition:transform .2s,border-color .2s;
+}
+.edu-card:hover{transform:translateY(-3px);border-color:var(--border2)}
+.edu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.edu-card.gold::before{background:linear-gradient(90deg,var(--gold),transparent)}
+.edu-card.teal::before{background:linear-gradient(90deg,var(--teal),transparent)}
+.edu-year{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem}
+.edu-degree{font-family:var(--serif);font-size:17px;color:var(--text);margin-bottom:.3rem;line-height:1.25}
+.edu-inst{font-size:13px;color:var(--text2);margin-bottom:.8rem}
+.edu-detail{font-size:12px;color:var(--text3);line-height:1.6}
+.edu-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:1rem}
+.etag{font-size:10px;color:var(--text3);border:0.5px solid var(--border2);border-radius:40px;padding:2px 8px;background:var(--surface2)}
+
+/* ─────────────────────────────────────────
+   SLIDE 4 — SKILLS
+───────────────────────────────────────── */
+#s4{background:var(--night);justify-content:center;align-items:center}
+#s4 .inner{position:relative;z-index:1}
+#s4 h2{margin-bottom:2.5rem}
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.skills-col-label{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px}
+.skills-col-label .scl-dot{width:6px;height:6px;border-radius:50%}
+.data-col .scl-dot{background:var(--teal)}
+.lis-col .scl-dot{background:var(--gold)}
+.data-col .skills-col-label{color:var(--teal)}
+.lis-col .skills-col-label{color:var(--gold)}
+.skill-item{margin-bottom:16px}
+.skill-top{display:flex;justify-content:space-between;font-size:13px;font-weight:400;margin-bottom:5px}
+.skill-name{color:var(--text2)}
+.skill-val{font-size:11px;color:var(--text3)}
+.skill-track{height:4px;background:var(--surface);border-radius:40px;overflow:hidden}
+.skill-fill{height:100%;border-radius:40px;width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+.data-col .skill-fill{background:linear-gradient(90deg,rgba(45,212,191,.5),var(--teal))}
+.lis-col .skill-fill{background:linear-gradient(90deg,rgba(201,168,76,.5),var(--gold))}
+.tools-row{margin-top:2rem;grid-column:1/-1}
+.tools-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-top:.8rem}
+.tool-chip{font-size:12px;font-weight:400;color:var(--text2);background:var(--surface);border:0.5px solid var(--border2);border-radius:6px;padding:5px 12px;transition:all .2s;cursor:default}
+.tool-chip:hover{border-color:var(--teal);color:var(--teal)}
+
+/* ─────────────────────────────────────────
+   SLIDE 5 — PROJECTS
+───────────────────────────────────────── */
+#s5{background:var(--night2);justify-content:center;align-items:center}
+#s5 .inner{position:relative;z-index:1}
+#s5 h2{margin-bottom:2.5rem}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.proj-card{
+  background:var(--surface);border:0.5px solid var(--border2);
+  border-radius:var(--r);overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+}
+.proj-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.proj-visual{height:130px;display:flex;align-items:center;justify-content:center;position:relative;font-size:42px}
+.pvis1{background:linear-gradient(135deg,rgba(45,212,191,.12) 0%,rgba(45,212,191,.04) 100%)}
+.pvis2{background:linear-gradient(135deg,rgba(201,168,76,.12) 0%,rgba(201,168,76,.04) 100%)}
+.pvis3{background:linear-gradient(135deg,rgba(100,130,200,.12) 0%,rgba(100,130,200,.04) 100%)}
+.pvis4{background:linear-gradient(135deg,rgba(180,100,200,.12) 0%,rgba(180,100,200,.04) 100%)}
+.pvis5{background:linear-gradient(135deg,rgba(45,212,191,.08) 0%,rgba(201,168,76,.08) 100%)}
+.pvis6{background:linear-gradient(135deg,rgba(200,120,80,.1) 0%,rgba(201,168,76,.06) 100%)}
+.proj-body{padding:1.1rem}
+.proj-type{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}
+.proj-type.da{color:var(--teal)}
+.proj-type.lis{color:var(--gold)}
+.proj-type.mix{color:var(--text3)}
+.proj-body h3{font-size:14px;font-weight:500;color:var(--text);margin-bottom:.4rem;line-height:1.3}
+.proj-body p{font-size:12px;color:var(--text3);line-height:1.55;margin-bottom:.8rem}
+.proj-tags{display:flex;flex-wrap:wrap;gap:4px}
+.ptag{font-size:10px;color:var(--text3);border:0.5px solid var(--border2);border-radius:40px;padding:2px 7px}
+
+/* ─────────────────────────────────────────
+   SLIDE 6 — CERTIFICATIONS & ACHIEVEMENTS
+───────────────────────────────────────── */
+#s6{background:var(--night3);justify-content:center;align-items:center}
+#s6 .inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;position:relative;z-index:1}
+.cert-list{display:flex;flex-direction:column;gap:12px}
+.cert-item{
+  background:var(--surface);border:0.5px solid var(--border2);
+  border-radius:8px;padding:1rem 1.2rem;
+  display:flex;align-items:flex-start;gap:12px;
+  transition:border-color .2s;
+}
+.cert-item:hover{border-color:var(--gold)}
+.cert-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.cert-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px}
+.cert-org{font-size:11px;color:var(--text3)}
+.achieve-list{display:flex;flex-direction:column;gap:10px;margin-top:0}
+.ach-item{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:12px 0;border-bottom:0.5px solid var(--border);
+}
+.ach-item:last-child{border-bottom:none}
+.ach-num{font-family:var(--serif);font-size:24px;color:var(--teal);flex-shrink:0;line-height:1;width:36px}
+.ach-text{font-size:13px;color:var(--text2);line-height:1.6}
+.ach-label{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+
+/* ─────────────────────────────────────────
+   SLIDE 7 — CONTACT
+───────────────────────────────────────── */
+#s7{background:var(--night);justify-content:center;align-items:center}
+#s7 .inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.contact-left h2{font-size:clamp(32px,4vw,52px);margin-bottom:1rem}
+.contact-left p{font-size:14px;color:var(--text2);line-height:1.75;margin-bottom:2rem;max-width:360px}
+.c-links{display:flex;flex-direction:column;gap:10px}
+.c-link{
+  display:flex;align-items:center;gap:12px;
+  background:var(--surface);border:0.5px solid var(--border2);
+  border-radius:8px;padding:12px 16px;text-decoration:none;
+  transition:all .2s;
+}
+.c-link:hover{border-color:var(--teal);background:var(--surface2)}
+.c-link-icon{font-size:18px;width:24px;text-align:center;flex-shrink:0}
+.c-link-info{}
+.c-link-lbl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1px}
+.c-link-val{font-size:13px;color:var(--text)}
+.contact-form{display:flex;flex-direction:column;gap:13px}
+.cf-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:5px}
+.cf-input,.cf-ta,.cf-sel{
+  width:100%;background:var(--surface);border:0.5px solid var(--border2);
+  border-radius:7px;color:var(--text);font-family:var(--sans);
+  font-size:13px;padding:10px 13px;outline:none;
+  transition:border-color .2s;
+}
+.cf-input:focus,.cf-ta:focus,.cf-sel:focus{border-color:rgba(45,212,191,.4)}
+.cf-input::placeholder,.cf-ta::placeholder{color:var(--text3)}
+.cf-ta{resize:vertical;min-height:90px}
+.cf-sel option{background:var(--night2);color:var(--text)}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cf-btn{
+  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  background:var(--teal);color:var(--night);font-family:var(--sans);
+  font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:11px 24px;border-radius:40px;border:none;cursor:pointer;
+  transition:all .2s;
+}
+.cf-btn:hover{background:var(--teal2);transform:translateY(-1px)}
+
+.footer-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:150;
+  padding:0 2.5rem;height:36px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(11,13,17,0.6);backdrop-filter:blur(10px);
+}
+.fb-left{font-size:10px;color:var(--text3);letter-spacing:.06em}
+.fb-right{font-size:10px;color:var(--text3)}
+#slide-counter{color:var(--teal)}
+
+/* ── DECORATIVE RING ── */
+.deco-ring{
+  position:absolute;border-radius:50%;border:1px solid var(--border);
+  pointer-events:none;
+}
+
+@media(max-width:700px){
+  #s1 .inner,#s2 .inner,#s3 .inner,#s4 .skills-layout,#s5 .inner,#s6 .inner,#s7 .inner,
+  .projects-grid,.cf-row{grid-template-columns:1fr}
+  .topbar-nav{display:none}
+  #sidenav{right:10px}
+  .hero-right{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<nav id="topbar">
+  <a class="topbar-logo" href="#s1">Joydip <span>Barman</span></a>
+  <ul class="topbar-nav">
+    <li><a href="#" onclick="goTo(0)">Home</a></li>
+    <li><a href="#" onclick="goTo(1)">About</a></li>
+    <li><a href="#" onclick="goTo(2)">Education</a></li>
+    <li><a href="#" onclick="goTo(3)">Skills</a></li>
+    <li><a href="#" onclick="goTo(4)">Projects</a></li>
+    <li><a href="#" onclick="goTo(5)">Certifications</a></li>
+  </ul>
+  <a class="topbar-cta" href="#" onclick="goTo(6)">Contact →</a>
+</nav>
+
+<!-- SIDE DOT NAV -->
+<div id="sidenav">
+  <button class="sn-dot active" onclick="goTo(0)" title="Home"></button>
+  <button class="sn-dot" onclick="goTo(1)" title="About"></button>
+  <button class="sn-dot" onclick="goTo(2)" title="Education"></button>
+  <button class="sn-dot" onclick="goTo(3)" title="Skills"></button>
+  <button class="sn-dot" onclick="goTo(4)" title="Projects"></button>
+  <button class="sn-dot" onclick="goTo(5)" title="Certifications"></button>
+  <button class="sn-dot" onclick="goTo(6)" title="Contact"></button>
+</div>
+
+<!-- FOOTER BAR -->
+<div class="footer-bar">
+  <span class="fb-left">Data Analyst &amp; LIS Specialist</span>
+  <span class="fb-right"><span id="slide-counter">01</span> / 07</span>
+</div>
+
+<!-- PROGRESS -->
+<div id="progress" style="width:14.3%"></div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 1 — HERO
+═══════════════════════════════════════════ -->
+<div id="slides">
+<div class="slide" id="s1">
+  <div class="geo">
+    <div class="geo-line l1" style="width:1px;height:55%;left:40%;top:0"></div>
+    <div class="geo-line l2" style="width:55%;height:1px;left:0;top:50%"></div>
+    <div class="geo-line l3" style="width:1px;height:35%;right:18%;bottom:0"></div>
+    <div class="deco-ring" style="width:300px;height:300px;right:-80px;top:-80px;opacity:.4"></div>
+    <div class="deco-ring" style="width:180px;height:180px;right:20px;top:20px;opacity:.2"></div>
+  </div>
+  <div class="inner" style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:3rem;align-items:center;height:100vh;padding-top:52px">
+    <div>
+      <p class="hero-eyebrow reveal">Fresher Portfolio · 2024</p>
+      <h1 class="hero-name reveal d1">Joydip<br><span>Barman</span></h1>
+      <p class="hero-tagline reveal d2">A curious mind trained in both the architecture of data and the science of information — ready to turn knowledge into insight.</p>
+      <div class="hero-dual reveal d3">
+        <div class="dual-pill da"><span class="dual-dot"></span>Data Analyst<span class="dual-sub">Python · SQL · Tableau</span></div>
+        <div class="dual-pill lis"><span class="dual-dot"></span>LIS Specialist<span class="dual-sub">Metadata · MARC · IR</span></div>
+      </div>
+      <div class="hero-btns reveal d4">
+        <a class="btn-t primary" href="#" onclick="goTo(4)">View Projects →</a>
+        <a class="btn-t ghost" href="#" onclick="goTo(6)">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right reveal d2">
+      <div class="hero-card">
+        <div class="hero-card-label">Quick profile</div>
+        <div class="stats-row">
+          <div class="stat-c"><span class="stat-n">2</span><span class="stat-l">Domains</span></div>
+          <div class="stat-c"><span class="stat-n">6+</span><span class="stat-l">Projects</span></div>
+          <div class="stat-c"><span class="stat-n">4+</span><span class="stat-l">Certifications</span></div>
+        </div>
+      </div>
+      <div class="scroll-hint reveal d5">
+        <div class="scroll-arrow"><div class="sa"></div><div class="sa"></div><div class="sa"></div></div>
+        Scroll to explore
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 2 — ABOUT
+═══════════════════════════════════════════ -->
+<div class="slide" id="s2">
+  <div class="geo">
+    <div class="deco-ring" style="width:400px;height:400px;left:-150px;bottom:-100px;opacity:.15"></div>
+  </div>
+  <div class="inner" style="height:100vh;display:flex;align-items:center;padding-top:52px">
+    <div style="display:grid;grid-template-columns:280px 1fr;gap:4rem;align-items:center;width:100%">
+      <div class="about-initials-wrap reveal">
+        <div class="about-avatar">J</div>
+        <p class="about-name-sm">Joydip Barman</p>
+        <p class="about-loc">📍 West Bengal, India</p>
+        <div class="about-badges">
+          <span class="badge t">Data Analyst</span>
+          <span class="badge g">LIS Fresher</span>
+          <span class="badge t">Open to Work</span>
+        </div>
+      </div>
+      <div>
+        <p class="label reveal">About me</p>
+        <h2 class="reveal d1">Analyst.<br><em style="font-style:italic;color:var(--gold)">Librarian.</em> Thinker.</h2>
+        <p class="about-para reveal d2">I am a fresh graduate with a dual academic foundation in Library & Information Science and Data Analytics. My passion lies at the intersection of these two fields — where structured information meets analytical thinking.</p>
+        <p class="about-para reveal d3">I believe that data is only as powerful as the systems that organize it. My LIS training gives me a unique perspective on metadata, knowledge organization, and information retrieval — skills that make me a better data analyst and a more thoughtful information professional.</p>
+        <blockquote class="about-quote reveal d4">"Every dataset is a library waiting to be catalogued and explored."</blockquote>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:1rem" class="reveal d5">
+          <span class="badge t">Team player</span>
+          <span class="badge g">Research-oriented</span>
+          <span class="badge t">Detail-focused</span>
+          <span class="badge g">Quick learner</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 3 — EDUCATION
+═══════════════════════════════════════════ -->
+<div class="slide" id="s3">
+  <div class="geo">
+    <div class="geo-line" style="width:1px;height:100%;left:50%;top:0;opacity:.5"></div>
+    <div class="deco-ring" style="width:350px;height:350px;right:-100px;top:-80px;opacity:.12"></div>
+  </div>
+  <div class="inner" style="height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:52px">
+    <p class="label reveal">Academic background</p>
+    <h2 class="reveal d1" style="margin-bottom:2.5rem">Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card gold reveal d1">
+        <p class="edu-year">2021 – 2023</p>
+        <p class="edu-degree">Master of Library & Information Science (MLIS)</p>
+        <p class="edu-inst">University / Institution, West Bengal</p>
+        <p class="edu-detail">Specialized in digital libraries, knowledge organization, cataloguing standards, and information retrieval systems. Dissertation on metadata interoperability.</p>
+        <div class="edu-tags">
+          <span class="etag">Cataloguing</span><span class="etag">MARC 21</span><span class="etag">Dublin Core</span><span class="etag">IR Systems</span>
+        </div>
+      </div>
+      <div class="edu-card teal reveal d2">
+        <p class="edu-year">2018 – 2021</p>
+        <p class="edu-degree">Bachelor of Library & Information Science (B.Lib)</p>
+        <p class="edu-inst">University / Institution, West Bengal</p>
+        <p class="edu-detail">Core grounding in library management, reference services, classification systems (DDC, UDC), bibliography, and digital resource management.</p>
+        <div class="edu-tags">
+          <span class="etag">DDC</span><span class="etag">UDC</span><span class="etag">Reference Services</span><span class="etag">Indexing</span>
+        </div>
+      </div>
+      <div class="edu-card teal reveal d3">
+        <p class="edu-year">2025 (ongoing)</p>
+        <p class="edu-degree">Data Analytics Professional Certificate</p>
+        <p class="edu-inst">Google / Coursera</p>
+        <p class="edu-detail">Hands-on training in data analysis workflow, SQL, spreadsheets, Tableau, R programming, and data-driven storytelling.</p>
+        <div class="edu-tags">
+          <span class="etag">SQL</span><span class="etag">R</span><span class="etag">Tableau</span><span class="etag">Spreadsheets</span>
+        </div>
+      </div>
+      <div class="edu-card gold reveal d4">
+        <p class="edu-year">2025</p>
+        <p class="edu-degree">Python for Data Science</p>
+        <p class="edu-inst">NPTEL / Coursera</p>
+        <p class="edu-detail">Python fundamentals, pandas, NumPy, matplotlib, and Jupyter Notebooks applied to real-world data analysis problems.</p>
+        <div class="edu-tags">
+          <span class="etag">Python</span><span class="etag">pandas</span><span class="etag">NumPy</span><span class="etag">Matplotlib</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 4 — SKILLS
+═══════════════════════════════════════════ -->
+<div class="slide" id="s4">
+  <div class="geo">
+    <div class="deco-ring" style="width:500px;height:500px;right:-200px;bottom:-200px;opacity:.1"></div>
+  </div>
+  <div class="inner" style="height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:52px">
+    <p class="label reveal">What I bring to the table</p>
+    <h2 class="reveal d1" style="margin-bottom:2.5rem">Skills</h2>
+    <div class="skills-layout">
+      <div class="skills-col data-col reveal d2">
+        <p class="skills-col-label"><span class="scl-dot"></span>Data Analytics</p>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Python (pandas, NumPy)</span><span class="skill-val">Beginner–Intermediate</span></div>
+          <div class="skill-track"><div class="skill-fill" data-w="65%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">SQL & Database Querying</span><span class="skill-val">Intermediate</span></div>
+          <div class="skill-track"><div class="skill-fill" data-w="72%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">MS Excel & Google Sheets</span><span class="skill-val">Proficient</span></div>
+          <div class="skill-track"><div class="skill-fill" data-w="82%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Tableau / Power BI</span><span class="skill-val">Beginner</span></div>
+          <div class="skill-track"><div class="skill-fill" data-w="55%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Data cleaning & wrangling</span><span class="skill-val">Intermediate</span></div>
+          <div class="skill-track"><div class="skill-fill" data-w="70%"></div></div>
+        </div>
+      </div>
+      <div class="skills-col lis-col reveal d3">
+        <p class="skills-col-label"><span class="scl-dot"></span>Library & Information Science</p>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Metadata & Cataloguing</span><span class="skill-val">Proficient</span></div>
+          <div class="skill-track"><div class="skill-fill" data-w="90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">MARC 21 / Dublin Core</span><span class="skill-val">Proficient</span></div>
+          <div class="skill-track"><div class="skill-fill" data-w="85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Classification (DDC / UDC)</span><span class="skill-val">Proficient</span></div>
+          <div class="skill-track"><div class="skill-fill" data-w="88%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Information Retrieval</span><span class="skill-val">Intermediate</span></div>
+          <div class="skill-track"><div class="skill-fill" data-w="75%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Digital Library Systems</span><span class="skill-val">Intermediate</span></div>
+          <div class="skill-track"><div class="skill-fill" data-w="68%"></div></div>
+        </div>
+      </div>
+      <div class="tools-row reveal d4">
+        <p class="skills-col-label" style="color:var(--text3)"><span class="scl-dot" style="background:var(--text3)"></span>Tools & Platforms</p>
+        <div class="tools-wrap">
+          <span class="tool-chip">Python</span><span class="tool-chip">Jupyter Notebook</span><span class="tool-chip">SQL</span><span class="tool-chip">MS Excel</span><span class="tool-chip">Google Sheets</span><span class="tool-chip">Tableau Public</span><span class="tool-chip">Power BI</span><span class="tool-chip">Koha ILS</span><span class="tool-chip">DSpace</span><span class="tool-chip">Greenstone</span><span class="tool-chip">OPAC</span><span class="tool-chip">Zotero</span><span class="tool-chip">Git</span><span class="tool-chip">SPSS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 5 — PROJECTS
+═══════════════════════════════════════════ -->
+<div class="slide" id="s5">
+  <div class="geo">
+    <div class="deco-ring" style="width:420px;height:420px;left:-160px;top:-100px;opacity:.1"></div>
+  </div>
+  <div class="inner" style="height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:52px">
+    <p class="label reveal">Academic & personal work</p>
+    <h2 class="reveal d1" style="margin-bottom:2rem">Projects</h2>
+    <div class="projects-grid">
+      <div class="proj-card reveal d1">
+        <div class="proj-visual pvis1">📊</div>
+        <div class="proj-body">
+          <p class="proj-type da">Data Analytics</p>
+          <h3>Library Circulation Trend Analysis</h3>
+          <p>Analysed 3 years of book borrowing data using Python & Excel to uncover usage patterns and collection gaps.</p>
+          <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">pandas</span><span class="ptag">Matplotlib</span></div>
+        </div>
+      </div>
+      <div class="proj-card reveal d2">
+        <div class="proj-visual pvis2">🗂️</div>
+        <div class="proj-body">
+          <p class="proj-type lis">LIS · Metadata</p>
+          <h3>Digital Archive Metadata Schema</h3>
+          <p>Designed a Dublin Core–based metadata schema for a university's digital photograph collection of 500+ items.</p>
+          <div class="proj-tags"><span class="ptag">Dublin Core</span><span class="ptag">Metadata</span><span class="ptag">DSpace</span></div>
+        </div>
+      </div>
+      <div class="proj-card reveal d3">
+        <div class="proj-visual pvis3">🔍</div>
+        <div class="proj-body">
+          <p class="proj-type mix">LIS · Data</p>
+          <h3>OPAC Search Behaviour Study</h3>
+          <p>Survey-based study of student search patterns on OPAC, with data visualisation of pain points and recommendations.</p>
+          <div class="proj-tags"><span class="ptag">Survey</span><span class="ptag">Excel</span><span class="ptag">OPAC</span></div>
+        </div>
+      </div>
+      <div class="proj-card reveal d4">
+        <div class="proj-visual pvis4">📈</div>
+        <div class="proj-body">
+          <p class="proj-type da">Data Analytics</p>
+          <h3>COVID-19 Public Data Dashboard</h3>
+          <p>Built an interactive Tableau Public dashboard visualising district-level COVID data using public government datasets.</p>
+          <div class="proj-tags"><span class="ptag">Tableau</span><span class="ptag">SQL</span><span class="ptag">Open Data</span></div>
+        </div>
+      </div>
+      <div class="proj-card reveal d5">
+        <div class="proj-visual pvis5">📚</div>
+        <div class="proj-body">
+          <p class="proj-type lis">LIS · Digital</p>
+          <h3>Greenstone Digital Library Setup</h3>
+          <p>Installed and configured a Greenstone digital library for a local college, organising 200+ research papers with metadata.</p>
+          <div class="proj-tags"><span class="ptag">Greenstone</span><span class="ptag">MARC</span><span class="ptag">Metadata</span></div>
+        </div>
+      </div>
+      <div class="proj-card reveal d6">
+        <div class="proj-visual pvis6">🌐</div>
+        <div class="proj-body">
+          <p class="proj-type da">Data · Research</p>
+          <h3>Bibliometric Analysis of LIS Journals</h3>
+          <p>Conducted a bibliometric study of 5 LIS journals (2015–2024) using Scopus data and visualised authorship trends in R.</p>
+          <div class="proj-tags"><span class="ptag">R</span><span class="ptag">Scopus</span><span class="ptag">Bibliometrix</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 6 — CERTIFICATIONS
+═══════════════════════════════════════════ -->
+<div class="slide" id="s6">
+  <div class="geo">
+    <div class="deco-ring" style="width:300px;height:300px;right:-60px;bottom:-60px;opacity:.14"></div>
+  </div>
+  <div class="inner" style="height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:52px">
+    <p class="label reveal">Credentials & highlights</p>
+    <h2 class="reveal d1" style="margin-bottom:2.5rem">Certifications & Achievements</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem">
+      <div>
+        <p style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem" class="reveal d1">Certifications</p>
+        <div class="cert-list">
+          <div class="cert-item reveal d2">
+            <div class="cert-icon">🏅</div>
+            <div>
+              <p class="cert-title">Google Data Analytics Certificate</p>
+              <p class="cert-org">Google / Coursera · 2024</p>
+            </div>
+          </div>
+          <div class="cert-item reveal d3">
+            <div class="cert-icon">🐍</div>
+            <div>
+              <p class="cert-title">Python for Data Science</p>
+              <p class="cert-org">NPTEL · 2024</p>
+            </div>
+          </div>
+          <div class="cert-item reveal d4">
+            <div class="cert-icon">📊</div>
+            <div>
+              <p class="cert-title">SQL for Data Analysis</p>
+              <p class="cert-org">Kaggle · 2024</p>
+            </div>
+          </div>
+          <div class="cert-item reveal d5">
+            <div class="cert-icon">📚</div>
+            <div>
+              <p class="cert-title">Digital Libraries & Information Services</p>
+              <p class="cert-org">IGNOU / UGC-MOOC · 2023</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem" class="reveal d1">Achievements</p>
+        <div class="achieve-list">
+          <div class="ach-item reveal d2">
+            <span class="ach-num">01</span>
+            <div><p class="ach-label">Academic merit</p><p class="ach-text">Scored among the top students in MLIS programme; dissertation on metadata interoperability rated 'Excellent'.</p></div>
+          </div>
+          <div class="ach-item reveal d3">
+            <span class="ach-num">02</span>
+            <div><p class="ach-label">Conference paper</p><p class="ach-text">Presented a paper on "Data Analytics in Library Decision-Making" at a state-level LIS seminar (2023).</p></div>
+          </div>
+          <div class="ach-item reveal d4">
+            <span class="ach-num">03</span>
+            <div><p class="ach-label">Volunteer cataloguing</p><p class="ach-text">Volunteered at a local district library to digitise and catalogue 300+ rare books using Koha ILS.</p></div>
+          </div>
+          <div class="ach-item reveal d5">
+            <span class="ach-num">04</span>
+            <div><p class="ach-label">Hackathon</p><p class="ach-text">Participated in a national open data hackathon; built a library analytics tool in 24 hours using Python and Streamlit.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 7 — CONTACT
+═══════════════════════════════════════════ -->
+<div class="slide" id="s7">
+  <div class="geo">
+    <div class="geo-line" style="width:1px;height:100%;left:50%;top:0;opacity:.3"></div>
+    <div class="deco-ring" style="width:500px;height:500px;left:-200px;bottom:-200px;opacity:.08"></div>
+  </div>
+  <div class="inner" style="height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding-top:52px">
+    <div class="contact-left">
+      <p class="label reveal">Let's connect</p>
+      <h2 class="reveal d1">Open to<br><span style="font-style:italic;color:var(--teal)">opportunities.</span></h2>
+      <p class="reveal d2" style="font-size:14px;color:var(--text2);line-height:1.75;margin-bottom:2rem;max-width:360px">I'm actively looking for entry-level roles in data analytics, library & information management, or hybrid positions where both skill sets matter. Let's talk.</p>
+      <div class="c-links reveal d3">
+        <a class="c-link" href="https://www.linkedin.com/in/joydipbarman/" target="_blank">
+          <span class="c-link-icon">💼</span>
+          <div><p class="c-link-lbl">LinkedIn</p><p class="c-link-val">linkedin.com/in/joydipbarman</p></div>
+        </a>
+        <a class="c-link" href="mailto:joydip@email.com">
+          <span class="c-link-icon">✉️</span>
+          <div><p class="c-link-lbl">Email</p><p class="c-link-val">joydip@email.com</p></div>
+        </a>
+        <a class="c-link" href="#">
+          <span class="c-link-icon">🐙</span>
+          <div><p class="c-link-lbl">GitHub</p><p class="c-link-val">github.com/joydipbarman</p></div>
+        </a>
+        <a class="c-link" href="#">
+          <span class="c-link-icon">📍</span>
+          <div><p class="c-link-lbl">Location</p><p class="c-link-val">West Bengal, India · Open to remote</p></div>
+        </a>
+      </div>
+    </div>
+    <div class="reveal d3">
+      <div class="contact-form">
+        <div class="cf-row">
+          <div><label class="cf-label">Name</label><input class="cf-input" type="text" placeholder="Your name"></div>
+          <div><label class="cf-label">Email</label><input class="cf-input" type="email" placeholder="you@example.com"></div>
+        </div>
+        <div>
+          <label class="cf-label">Subject</label>
+          <select class="cf-sel">
+            <option value="">Select…</option>
+            <option>Job / internship opportunity</option>
+            <option>Collaboration on a project</option>
+            <option>Freelance data analysis work</option>
+            <option>Library / cataloguing project</option>
+            <option>Just saying hello</option>
+          </select>
+        </div>
+        <div>
+          <label class="cf-label">Message</label>
+          <textarea class="cf-ta" placeholder="Tell me more about the opportunity…"></textarea>
+        </div>
+        <button class="cf-btn">Send message →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end #slides -->
+
+<script>
+const TOTAL = 7;
+let current = 0;
+const slidesEl = document.getElementById('slides');
+const dots = document.querySelectorAll('.sn-dot');
+const counter = document.getElementById('slide-counter');
+const progress = document.getElementById('progress');
+const bars = document.querySelectorAll('.skill-fill[data-w]');
+const reveals = document.querySelectorAll('.reveal');
+
+function pad(n){ return n < 10 ? '0'+n : ''+n; }
+
+function updateUI(idx){
+  current = idx;
+  dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+  counter.textContent = pad(idx+1);
+  progress.style.width = ((idx+1)/TOTAL*100)+'%';
+  // reveal items in current slide
+  const slideEl = document.querySelectorAll('.slide')[idx];
+  slideEl.querySelectorAll('.reveal').forEach(el=>{
+    el.classList.add('visible');
+  });
+}
+
+function goTo(idx){
+  slidesEl.scrollTo({top: idx * window.innerHeight, behavior:'smooth'});
+}
+window.goTo = goTo;
+
+// detect current slide on scroll
+let ticking = false;
+slidesEl.addEventListener('scroll',()=>{
+  if(!ticking){
+    requestAnimationFrame(()=>{
+      const idx = Math.round(slidesEl.scrollTop / window.innerHeight);
+      if(idx !== current) updateUI(idx);
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// keyboard nav
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='PageDown') goTo(Math.min(current+1,TOTAL-1));
+  if(e.key==='ArrowUp'||e.key==='PageUp') goTo(Math.max(current-1,0));
+});
+
+// animate skill bars when slide 4 becomes visible
+const skillObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.skill-fill[data-w]').forEach(b=>{
+        setTimeout(()=>{ b.style.width = b.dataset.w; }, 200);
+      });
+    }
+  });
+},{threshold:0.4});
+document.getElementById('s4') && skillObs.observe(document.getElementById('s4'));
+
+// init
+updateUI(0);
+// also trigger first slide reveals immediately
+document.querySelectorAll('#s1 .reveal').forEach(el=>el.classList.add('visible'));
+</script>
+</body>
+</html>
