@@ -85,6 +85,8 @@ The repository is named `joydipbarman.github.io`, so GitHub Pages serves it at <
 
 - Email: [joydipbarman.work@gmail.com](mailto:joydipbarman.work@gmail.com)
 - LinkedIn: [linkedin.com/in/joydipbarman](https://www.linkedin.com/in/joydipbarman)
+- GitHub: [github.com/joydipbarman](https://github.com/joydipbarman)
+- Website: [joydipbarman.github.io](https://joydipbarman.github.io/)
 
 ## License
 
